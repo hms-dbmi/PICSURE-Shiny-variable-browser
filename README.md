@@ -11,3 +11,4 @@ Useful ressources:
 - [DT documentation frontpage](https://rstudio.github.io/DT/)
 - [DT extensions documentation](https://rstudio.github.io/DT/extensions.html)
 - [Esquisse Shiny module](https://dreamrs.github.io/esquisse/reference/module-filterDF.html)
+- [Shiny Dashboard Tutorial](https://rstudio.github.io/shinydashboard/structure.html)
