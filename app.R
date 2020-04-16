@@ -11,11 +11,11 @@ whole_data <- data.table::fread(file = "multiIndex_variablesDict.csv",
                                 header = TRUE,
                                 drop = c("categoryValues", "batch_group"),
                                 na.strings = c("NA", "")) %>%
-   select("simplified_varName", "varName", everything())
+   select("simplified_name", "name", everything())
 study_names <- whole_data$level_0 %>% unique()
 not_all_na <- function(x) {!all(is.na(x))}
 less_20_elem <- function(x) {length(unique(x)) < 20}
-whole_data[["varnames_wout_backslashes"]] <- gsub("\\", " ", whole_data[["varName"]], fixed=TRUE)
+whole_data[["names_wout_backslashes"]] <- gsub("\\", " ", whole_data[["name"]], fixed=TRUE)
 ## REFERENCES ##
 # https://rstudio.github.io/shinydashboard/structure.html
 # https://rstudio.github.io/shinydashboard/appearance.html
@@ -103,9 +103,9 @@ app <- shinyApp(
             filter(level_0 %in% input$subset) %>%
             select_if(not_all_na)
          if ((input$variable_search_box != "") & isTRUE(input$search_regex)) {
-            filter(test, stringr::str_detect(test$varnames_wout_backslashes, input$variable_search_box))
+            filter(test, stringr::str_detect(test$names_wout_backslashes, input$variable_search_box))
          } else if ((input$variable_search_box != "") & isFALSE(input$search_regex)) {
-            filter(test, stringr::str_detect(test$varnames_wout_backslashes, stringr::coll(input$variable_search_box, TRUE)))
+            filter(test, stringr::str_detect(test$names_wout_backslashes, stringr::coll(input$variable_search_box, TRUE)))
          } else {
             test
          }
@@ -142,11 +142,11 @@ app <- shinyApp(
                                                   buttons = c('copy', 'csv', 'pdf'),
                                                   text = "Export"
                                                )),
-                                               columnDefs = list(list(visible=FALSE, targets = which(names(.) == "varnames_wout_backslashes") - 1)
+                                               columnDefs = list(list(visible=FALSE, targets = which(names(.) == "names_wout_backslashes") - 1)
                                                                  )
                                 )
                   ) %>% DT::formatStyle(
-                     c("simplified_varName", "varName"),
+                     c("simplified_name", "name"),
                      backgroundColor = 'lightgreen')
 
             }, options = list(pageLength = 100))
