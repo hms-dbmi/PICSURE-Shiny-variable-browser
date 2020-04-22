@@ -1,10 +1,10 @@
 # PICSURE Variable browser
 
-A simple Shiny App to ease browsing available variables and retrieve variable names from an HPDS hosted database.
+This `ShinyApp` is a proof of concept to allow users for easily browsing and searching variable names within the [PIC-SURE BDC UI](https://picsure.biodatacatalyst.nhlbi.nih.gov). Additional benefits of the `ShinyApp` are the searching capabilities and dynamic filtering features.
 
 ## Libraries
  
-Currently, the Shiny app is mainly based on the [DT library](https://rstudio.github.io/DT/
+Currently, the `ShinyApp` is mainly based on the [DT library](https://rstudio.github.io/DT/
 )
 
 Useful ressources:
